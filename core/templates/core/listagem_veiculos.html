@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   list_veic
+{% endblock %}
+
+{% block main %}
+ <h3>{{ txt }}</h3>
+ {% for i in dados %}
+   Placa: {{ i.placa }} <br>
+   Modelo: {{ i.modelo }} <br>
+   Fabricante: {{ i.fabricante_id }} <br>
+   Proprietário: {{ i.cliente_id }} <br>
+   Cor: {{ i.cor }} <br>
+   Ano:  {{ i.ano }} <br>
+   {% if i.foto %}
+      <img src="{{ i.foto.url }}" width="200"> <br>
+   {% else %}
+      <img src="{% static 'veiculo_generico.jpg'%}" width="200"> <br>
+   {% endif %}
+
+   <a href="{% url 'url_atualiza_veiculo' i.id %}">Editar</a> &nbsp;
+   <a href="{% url 'url_exclui_veiculo' i.id %}">Excluir</a>
+  ------------------------------------------------ <br>
+{% endfor %}
+
+   <button onclick="window.location.href='/'">home</button>
+{% endblock %}

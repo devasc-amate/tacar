@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{%  load crispy_forms_tags %}
+
+
+{% block title %}
+   {{ txt_title }}
+{% endblock %}
+
+{% block extrahead %}
+   {{ form.media }}
+{% endblock %}
+
+{% block main %}
+   <p>{{ txt_descricao }} </p>
+   <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form | crispy }} <br>
+      <button type="submit">{{ txt_button }}</button>
+      <button onclick="window.location.href='/'">Cancelar</button>
+   </form>
+{% endblock %}
